@@ -1,0 +1,24 @@
+
+#template {
+	width: 600px;
+	margin: 0 auto;
+
+}
+#template > div {
+	border-bottom: solid 1px #333;
+}
+
+
+span {
+	display: inline-block;
+	border: 0;
+}
+.make {
+	width: 250px;
+}
+.model {
+	width: 242px;
+}
+.year {
+	width: 100px;
+}
