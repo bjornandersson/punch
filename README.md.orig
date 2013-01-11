@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 **PUNCH.JS**
 
 punch.js - A simple templating engine
@@ -12,3 +13,5 @@ Usage: see example.
 punch
 =====
 
+Simple templating engine
+>>>>>>> 550e8d19d369e67d4f8a0c630bcfbfce36b7a536
