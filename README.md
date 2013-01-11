@@ -8,7 +8,4 @@ Published under BSD License
 
 Dependency framworks: none.
 Usage: see example. 
-=======
-punch
-=====
 
