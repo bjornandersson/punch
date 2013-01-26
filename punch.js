@@ -44,32 +44,25 @@
                         item = clone;
                     }
                     for (var key in json_obj[i]) {
-                        //console.log(json_obj[i] + key);
                         if(json_obj[i].hasOwnProperty(key)) {
-                            //console.log(json_obj[i][key]);
                             if (Array.isArray(json_obj[i][key])) {
-                                //console.log("ISARRAY");
                                 designator = key;
                                 level++;
                                 this.punch(json_obj[i][key], item);
                             }
                             else if (typeof json_obj[i][key] === "object") {
-                                //console.log("ISOBJECT");
                                 designator = key;
                                 level++;
                                 this.punch(json_obj[i][key], item);
                             }
                             else {
-                                //console.log("ISSTRING");
                                 property = (designator.length > 0 ? "_" : "") + key;
-                                console.log(level + ". " + designator + property + ": " + json_obj[i][key]);
-
 
                                 // value -> attribute 
                                 if(item.querySelector('[data-punch-attr*=' + designator + property + ']')) {
                                     var attr = item.querySelector('[data-punch-attr*=' + designator + property + ']').getAttribute('data-punch-attr').split(';')[0];
                                     var value = json_obj[i][key];
-                                    console.log(key + " " + value);
+
                                     item.querySelector('[data-punch-attr*=' + designator + property + ']').setAttribute(attr,value);
                                     item.querySelector('[data-punch-attr*=' + designator + property + ']').removeAttribute('data-punch-attr');
                                 }
@@ -91,7 +84,6 @@
                 for (var key in json_obj) {
                     if(json_obj.hasOwnProperty(key)) {
                         property = (designator.length > 0 ? "_" : "") + key;
-                        console.log(level + ". " + designator + property + ": " + json_obj[key]);
                 
                         if(item.querySelector('[data-punch-val=' + designator + property + ']')) {
                             item.querySelector('[data-punch-val=' + designator + property + ']').innerHTML = json_obj[key];
@@ -103,6 +95,7 @@
             designator = "";
             level--;
             val = "";
+            if (typeof top_item != "undefined") top_item.setAttribute('class', 'is-hidden');
 
         }
     }
