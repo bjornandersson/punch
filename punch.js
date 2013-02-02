@@ -18,6 +18,19 @@
         level = 0,
         firstrun = true;
 
+    setAttr = function(elmnts, attr, value) {
+        for (var j=0;j<elmnts.length;j++) {
+            elmnts[j].setAttribute(attr,value);        
+            elmnts[j].removeAttribute('data-punch-attr');
+        }
+    };   
+    setVal = function(elmnts, value) {
+        for (var j=0;j<elmnts.length;j++) {
+            elmnts[j].innerHTML = value;
+            elmnts[j].removeAttribute('data-punch-val');
+        }
+    };
+
     if(typeof(Object.prototype.punch) === "undefined") {
         Object.prototype.punch = function() {
             if(firstrun) {
@@ -58,13 +71,16 @@
                             else {
                                 property = (designator.length > 0 ? "_" : "") + key;
 
+                                console.log("designator_property: " + designator + property);
+
                                 // value -> attribute 
                                 if(item.querySelector('[data-punch-attr*=' + designator + property + ']')) {
                                     var attr = item.querySelector('[data-punch-attr*=' + designator + property + ']').getAttribute('data-punch-attr').split(';')[0];
                                     var value = json_obj[i][key];
 
-                                    item.querySelector('[data-punch-attr*=' + designator + property + ']').setAttribute(attr,value);
-                                    item.querySelector('[data-punch-attr*=' + designator + property + ']').removeAttribute('data-punch-attr');
+                                    var elmnts = item.querySelectorAll('[data-punch-attr*=' + designator + property + ']');
+                                    setAttr(elmnts, attr, value);
+
                                 }
 
                                 // value -> tag
@@ -72,7 +88,11 @@
                                     if(level > 0) {
                                         val += json_obj[i][key] + ",";
                                     }
-                                    item.querySelector('[data-punch-val=' + designator + property + ']').innerHTML = (val==="") ? json_obj[i][key] : val.substring(0,val.length-1);
+
+                                    var elmnts = item.querySelectorAll('[data-punch-val=' + designator + property + ']');
+                                    //This is insane!!!
+                                    var value = (level > 0) ? json_obj[i][key] + "," : ((val==="") ? json_obj[i][key] : val.substring(0,val.length-1));
+                                    setVal(elmnts,value);
                                 }
                                 
                             }
@@ -85,8 +105,22 @@
                     if(json_obj.hasOwnProperty(key)) {
                         property = (designator.length > 0 ? "_" : "") + key;
                 
+                        // value -> attribute 
+                        if(item.querySelector('[data-punch-attr*=' + designator + property + ']')) {
+                            var attr = item.querySelector('[data-punch-attr*=' + designator + property + ']').getAttribute('data-punch-attr').split(';')[0];
+                            var value = json_obj[key];
+
+                            var elmnts = item.querySelectorAll('[data-punch-attr*=' + designator + property + ']');
+                            setAttr(elmnts, attr, value);
+
+                        }
+
+                        // value -> tag
                         if(item.querySelector('[data-punch-val=' + designator + property + ']')) {
-                            item.querySelector('[data-punch-val=' + designator + property + ']').innerHTML = json_obj[key];
+
+                            var elmnts = item.querySelectorAll('[data-punch-val=' + designator + property + ']');
+
+                            setVal(elmnts,json_obj[key]);
                         }
 
                     }
