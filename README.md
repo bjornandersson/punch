@@ -9,3 +9,4 @@ Published under BSD License
 Dependency framworks: none.
 Usage: see example. 
 
+Production ready: Not by far!
