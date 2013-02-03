@@ -6,9 +6,17 @@ window.onload = function() {
 		jsonStr += '{ "make" : "saab", "model" : "9-3", "year" : 1999, "accident" : {"id" : "2012-12-01", "report" : "Lorem ipsum dolor sit amet."} },' 
         jsonStr += '{ "make" : "opel", "model" : "vectra", "year" : 1993, "link" : "abc123" } ] }'
 
+    var services = '{ "services" : ['
+        services += '{ "id" : 0, "date" : "2001-01-01", "milage" : 1534, "comment" : "Oil change" },'
+        services += '{ "id" : 1, "date" : "2002-02-02", "milage" : 2534, "comment" : "Oil change" },'
+        services += '{ "id" : 2, "date" : "2003-03-03", "milage" : 3534, "comment" : "Oil change" },'
+        services += '{ "id" : 3, "date" : "2004-04-04", "milage" : 4534, "comment" : "Oil change" } ] }'
     
-	var json = JSON.parse(jsonStr);
-    document.getElementById("template").punch(json);
+    var json = JSON.parse(jsonStr);
+    var services = JSON.parse(services);
+
+    select("#template").punch(json);
+    select('div[data-punch-index=id3] .services').punch(services);
 }
 
 
