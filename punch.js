@@ -1,6 +1,10 @@
 /**
 *
-* 	Bla bla bla
+* 	punch.js
+*
+*   Simple templating engine.
+*
+*   No dependencies. See example for usage.
 *
 **/
 
