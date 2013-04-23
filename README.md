@@ -6,7 +6,7 @@ Copyright (c) 2013 Björn Andersson, http://github.org/bjornandersson/punch/
 
 Published under BSD License
 
-Dependency framworks: none.
+Dependency frameworks: jQuery.
 Usage: see example. 
 
-Production ready: Not by far!
+Production ready: Almost!
